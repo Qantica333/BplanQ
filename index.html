@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Qantica Business Plan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons CDN -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script>
+        // Directly call lucide.createIcons() after the library import to ensure icons load early
+        if (typeof lucide !== 'undefined') {
+            lucide.createIcons();
+        }
+    </script>
+    <style>
+        /* General body and main container styles, replicating the aesthetic of the previous document */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c; /* Main dark background (very dark gray) */
+            color: #e2e8f0; /* Light text color (light gray) */
+            display: flex;
+            justify-content: center;
+            align-items: flex-start; /* Align to start to prevent excessive vertical centering on small screens */
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background-color: #2d3748; /* Container background (dark gray) */
+            border-radius: 1rem; /* Rounded corners */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3); /* Soft shadow for dark theme */
+            padding: 30px;
+            box-sizing: border-box;
+        }
+
+        /* Styles for content cards within sections */
+        .content-card {
+            background-color: #2d3748; /* Card background (dark gray) */
+            border-radius: 0.75rem; /* Slightly less rounded for inner cards */
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* Lighter shadow for cards */
+            border: 1px solid #4a5568; /* Darker border for dark theme */
+        }
+
+        /* Styles for main titles and subtitles */
+        .main-title {
+            color: #2dd4bf; /* Teal */
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+        .section-title {
+            color: #2dd4bf; /* Teal for section titles */
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            width: 100%;
+            font-size: 1.75rem; /* Font size for section titles */
+        }
+        .subsection-title {
+            color: #e2e8f0; /* Off-white for subtitles */
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        /* Main section block grid style */
+        .main-sections-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+            width: 100%;
+        }
+        @media (min-width: 768px) {
+            .main-sections-grid {
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            }
+        }
+
+        /* Content block styles (similar to 'section-block') */
+        .content-block {
+            background-color: #2d3748; /* Section background (dark gray) */
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid;
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .content-block:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+        }
+
+        /* Border colors for content blocks (similar to those used in the organization chart) */
+        .border-teal { border-color: #2dd4bf; }
+        .border-blue { border-color: #60a5fa; }
+        .border-green { border-color: #4ade80; }
+        .border-red { border-color: #f87171; }
+        .border-purple { border-color: #a78bfa; }
+        .border-amber { border-color: #fbbf24; }
+        .border-coral { border-color: #ff7f50; }
+
+        /* Section icons style */
+        .section-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        .section-icon svg {
+            color: #2dd4bf; /* Default color, can be overridden with specific section colors */
+        }
+        .border-teal .section-icon svg { color: #2dd4bf; }
+        .border-blue .section-icon svg { color: #60a5fa; }
+        .border-green .section-icon svg { color: #4ade80; }
+        .border-red .section-icon svg { color: #f87171; }
+        .border-purple .section-icon svg { color: #a78bfa; }
+        .border-amber .section-icon svg { color: #fbbf24; }
+        .border-coral .section-icon svg { color: #ff7f50; }
+
+
+        /* Specific styles for lists within the business plan */
+        ul {
+            list-style-type: disc;
+            margin-left: 1.25rem; /* ml-5 */
+            padding-left: 0;
+        }
+        li {
+            margin-bottom: 0.5rem;
+        }
+        .list-header {
+            font-weight: 600;
+            color: #a0aec0; /* Medium gray */
+        }
+
+        /* Initial allocation table */
+        .allocation-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+            text-align: left;
+            color: #cbd5e0;
+        }
+        .allocation-table th, .allocation-table td {
+            padding: 0.75rem;
+            border-bottom: 1px solid #4a5568;
+        }
+        .allocation-table th {
+            background-color: #4a5568;
+            font-weight: 600;
+            color: #a0aec0;
+        }
+        .allocation-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-6 md:p-8">
+    <div class="container flex flex-col items-center">
+        <h1 class="text-3xl sm:text-4xl main-title">Qantica Business Plan V3b - May 2025</h1>
+        <p class="text-md sm:text-lg text-center text-gray-300 mb-8">A comprehensive vision of Qantica: Mission, Technology, and Strategy</p>
+
+        <div class="main-sections-grid">
+            <!-- Section: Executive Summary -->
+            <div class="content-block border-teal">
+                <div class="section-icon">
+                    <i data-lucide="building"></i>
+                </div>
+                <h2 class="section-title">Executive Summary</h2>
+                <div class="content-card w-full">
+                    <p class="text-sm text-white text-left mb-2">
+                        We define Qantica as a technology company serving the creative process. We officially started Qantica in Q3 2024, but we have been understanding the nature of the business and seeking solutions since 2022.
+                    </p>
+                    <p class="text-sm text-white text-left mb-2">
+                        Through conversations with prominent industry figures, we have perceived a crisis in the Intellectual Property (IP) and creative process universe: approximately 98% of movie projects fail, quality is decreasing, and there is evident "remote control fatigue" among audiences. This led us to realize that the problems were much larger than we initially thought and that technology's role could be revolutionary. That was the genesis of Qantica.
+                    </p>
+                    <p class="text-sm text-white text-left">
+                        We have developed original technology that guides the creator without interfering with their creative essence, optimizing resources and time. The platform will be able to process scripts simultaneously and in a highly scalable way, depending on our global marketing strategy. Only IPs deemed complete and ready for streaming platforms or video games will be selected for distribution.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Section: The Creative Process Crisis and Qantica's Solution -->
+            <div class="content-block border-red">
+                <div class="section-icon">
+                    <i data-lucide="drama"></i>
+                </div>
+                <h2 class="section-title">Creative Process Crisis and Solution</h2>
+                <div class="content-card w-full">
+                    <h3 class="subsection-title">Problem Identified</h3>
+                    <p class="text-sm text-white text-left mb-2">
+                        98% of movie projects fail. The quality of works is decreasing, and there is evident "remote control fatigue" in the audience.
+                    </p>
+                    <h3 class="subsection-title">Our Value Proposition</h3>
+                    <p class="text-sm text-white text-left">
+                        Qantica guides the creator without interfering with their creative essence, optimizing resources and time. Our technology simultaneously and scalably processes scripts, selecting only completed IPs ready for distribution on streaming platforms or video games.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Section: Founding Team -->
+            <div class="content-block border-blue">
+                <div class="section-icon">
+                    <i data-lucide="users"></i>
+                </div>
+                <h2 class="section-title">Founding Team</h2>
+                <div class="content-card w-full">
+                    <p class="text-sm text-white text-left">
+                        We are a founding team of three individuals: <strong>David R.</strong>, <strong>Diego F.</strong>, and <strong>Luciano C.</strong>, working with a team of creative and technological professionals. Qantica is a Delaware Corporation, and the technology is currently being developed in Uruguay. The core of the Qantica process is based on a proprietary QW3 process (US patent pending), with specialized AI agents feeding the EDEN backoffice.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Section: Investment Stages and Platform Vision (Text Diagram) -->
+            <div class="content-block border-purple">
+                <div class="section-icon">
+                    <i data-lucide="bar-chart-2"></i>
+                </div>
+                <h2 class="section-title">Investment Stages and Platform Vision</h2>
+                <div class="content-card w-full">
+                    <h3 class="subsection-title">PROFILES</h3>
+                    <p class="text-sm text-white text-left mb-2">
+                        In this first layer, screenwriters' profiles are received and classified. Previously rejected, completed but novel, and in-progress IPs are accepted. Profiles are modeled in databases, with unique IDs and access permissions that will allow for NFT ID management. The goal is to reach 100,000 members.
+                    </p>
+
+                    <h3 class="subsection-title">EDEN - PLATFORM</h3>
+                    <p class="text-sm text-white text-left mb-2">
+                        This is the backoffice where works are curated, summaries are written, and digital content is generated. IPs are "stressed" to determine their full potential as films, games, or both. The proprietary QW3 process (US patent pending) is executed here. It operates as a "Dark Factory" where validation focuses on the outputs (generated multimedia files), while internal multimedia content creation processes are performed automatically by specialized AI agents. The mission is to produce 20,000 ready works.
+                    </p>
+
+                    <h3 class="subsection-title">DASHBOARD</h3>
+                    <p class="text-sm text-white text-left mb-2">
+                        The public-facing interface where material produced in the EDEN is presented. Through blockchain technology, interactive and playful elements are added. The platform aims for 100,000 active members to participate in IP curation and selection through voting, and also to participate in selective crowdfunding.
+                    </p>
+
+                    <h3 class="subsection-title">Core Technology</h3>
+                    <ul class="list-disc list-inside text-sm text-white text-left">
+                        <li><strong>BLOCKCHAIN:</strong> Legitimacy, Traceability, Immutability, Security, Smart Contracts, Token Creation (one token per word, for example), NFTs (Dynamic, Creator, Fan), Crowdfunding.</li>
+                        <li><strong>SMART CONTRACTS:</strong> Integrated to automate processes.</li>
+                        <li><strong>TOKEN CREATION:</strong> Will facilitate a potential next financing round and will be a utility token.</li>
+                        <li><strong>NFTS:</strong> For creators and fans.</li>
+                        <li><strong>PLATFORM TOKENIZATION:</strong> The tokenization of the platform's IPs.</li>
+                    </ul>
+                    <h3 class="subsection-title">AI and Content Generation</h3>
+                    <ul class="list-disc list-inside text-sm text-white text-left">
+                        <li><strong>AI Programmers:</strong> Creation of "masters," script analysis, and work improvement with a proprietary and patented process.</li>
+                        <li><strong>Automatic Generation:</strong> Creation of teasers and project budgets.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Section: Token Strategy and Next Steps -->
+            <div class="content-block border-amber">
+                <div class="section-icon">
+                    <i data-lucide="dollar-sign"></i>
+                </div>
+                <h2 class="section-title">Token Strategy and Next Steps</h2>
+                <div class="content-card w-full">
+                    <h3 class="subsection-title">Token Strategy</h3>
+                    <p class="text-sm text-white text-left mb-2">
+                        Once the platform is fully functional with the underlying blockchain infrastructure, our ability to create a very valuable utility token will easily materialize. At this point, we can decide the strategic use of the token as a potential next financing round.
+                    </p>
+                    <h3 class="subsection-title">Next Steps</h3>
+                    <p class="text-sm text-white text-left mb-2">
+                        Given the ambitious nature of our project, we want to solidify our company by setting up core partnerships with leading players in our three pillars: Hollywood, Games, and Technology/Token. Once we secure these strategic partnerships and proper funding, through institutional sources or our token strategy, we will officially launch Qantica in 2026.
+                    </p>
+                    <p class="text-sm text-white text-left mb-2">
+                        Qantica is in the process of securing **$XX million** to build the technology. The goal is to be ready in **6 months** with a fully functional product that will allow us to partner with large industry players and launch the product successfully in the US. We believe that it will require at least **$20 million** between infrastructure, marketing, and full team development.
+                    </p>
+                    <h3 class="subsection-title">Initial Fund Allocation (Estimated)</h3>
+                    <table class="allocation-table">
+                        <thead>
+                            <tr>
+                                <th>Concept</th>
+                                <th>Cost/Month (Example)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>AI Programmers (X)</td>
+                                <td>[Cost/Month]</td>
+                            </tr>
+                            <tr>
+                                <td>Blockchain Programmers (Y)</td>
+                                <td>[Cost/Month]</td>
+                            </tr>
+                            <tr>
+                                <td>General Tech Programmers</td>
+                                <td>[Cost/Month]</td>
+                            </tr>
+                            <tr>
+                                <td>Creative Team</td>
+                                <td>[Cost/Month]</td>
+                            </tr>
+                            <tr>
+                                <td>Management Team</td>
+                                <td>[Cost/Month]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Section: Core Partnerships -->
+            <div class="content-block border-green">
+                <div class="section-icon">
+                    <i data-lucide="handshake"></i>
+                </div>
+                <h2 class="section-title">Strategic Partnerships</h2>
+                <div class="content-card w-full">
+                    <p class="text-sm text-white text-left mb-2">
+                        To solidify our company, we aim to establish key partnerships with leaders in our three fundamental pillars:
+                    </p>
+                    <ul class="list-disc list-inside text-sm text-white text-left">
+                        <li><strong>Hollywood:</strong> For film content production and distribution.</li>
+                        <li><strong>Games:</strong> For IP integration into the gaming world.</li>
+                        <li><strong>Technology/Token:</strong> To strengthen our blockchain infrastructure and token strategy.</li>
+                    </ul>
+                    <p class="text-sm text-white text-left mt-2">
+                        Our vision is to integrate with streaming platforms and distributors as a high-quality "raw material" provider, already curated by our audience, rather than directly competing with them.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        // Initializes Lucide icons when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            lucide.createIcons();
+        });
+    </script>
+</body>
+</html>
